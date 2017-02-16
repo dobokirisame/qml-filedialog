@@ -8,7 +8,6 @@ import "utils.js" as Utils
 import QtQuick.Dialogs 1.2
 
 Item {
-	id: item1
 	readonly property real textmargin: Utils.dp(Screen.pixelDensity,8)
 	function isFolder(fileName) {
 		return folderListModel.isFolder(folderListModel.indexOf(folderListModel.folder + "/" + fileName));
@@ -51,7 +50,7 @@ Item {
 			id: button
 			text: ".."
 			anchors.right: parent.right
-			anchors.rightMargin: 24
+			anchors.rightMargin: Utils.dp(Screen.pixelDensity, 24)
 			anchors.bottom: parent.bottom
 			anchors.top: parent.top
 			enabled: canMoveUp()
@@ -75,20 +74,18 @@ Item {
 			anchors.leftMargin: Utils.dp(Screen.pixelDensity, 24)
 			anchors.bottom: parent.bottom
 			anchors.top: parent.top
-			font.pixelSize: 10
+			font.pixelSize: Utils.dp(Screen.pixelDensity, 10)
 
 		}
 	}
 
 	FolderListModel {
 		id:  folderListModel
-		showDotAndDotDot: true
+//		showDotAndDotDot: true
 		showHidden: true
 		showDirsFirst: true
 		//		folder: "file:///sdcard"
 		nameFilters: "*.*"
-		onFolderChanged: {
-		}
 	}
 	OldControls.TableView {
 		id: view
@@ -96,12 +93,10 @@ Item {
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
-		anchors.topMargin: 0
-		anchors.margins: Utils.dp(Screen.pixelDensity, 24)
 		model: folderListModel
 		headerDelegate:headerDelegate
 		rowDelegate: Rectangle {
-			height: 40
+			height: Utils.dp(Screen.pixelDensity, 40)
 		}
 
 		OldControls.TableViewColumn {
@@ -114,7 +109,7 @@ Item {
 		Component {
 			id: fileDelegate
 			Item {
-				height: 36
+				height: Utils.dp(Screen.pixelDensity,36)
 				Rectangle {
 					anchors.fill: parent
 					MouseArea {
@@ -148,14 +143,13 @@ Item {
 		Component {
 			id: headerDelegate
 			Rectangle {
-				height: 36
+				height: Utils.dp(Screen.pixelDensity, 36)
 				color: Utils.textAltColor()
-				border.width: 1
 				border.color: Utils.textAltColor()
 				Text {
 					anchors.verticalCenter: parent.verticalCenter
 					anchors.horizontalCenter: parent.horizontalCenter
-					height: 12
+					height: Utils.dp(Screen.pixelDensity, 12)
 					font.bold: true
 					elide: Text.ElideMiddle
 					color: Utils.primaryColor()

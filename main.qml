@@ -1,16 +1,15 @@
-import QtQuick 2.5
-import QtQuick.Window 2.2
+import QtQuick 2.7
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
+import QtQuick.Window 2.0
+import "utils.js" as Utils
 
-Window {
+ApplicationWindow  {
 	visible: true
 	width: 640
 	height: 480
-	title: qsTr("Hello World")
-
-	MainForm {
+	title: qsTr("File Dialog")
+	ChooseFileViewer {
 		anchors.fill: parent
-		mouseArea.onClicked: {
-			console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
-		}
 	}
 }

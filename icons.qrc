@@ -1,20 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/ic_list_white_24dp.png</file>
-        <file>icons/ic_exit_to_app_white_24dp.png</file>
-        <file>icons/ic_insert_drive_file_white_48dp.png</file>
-        <file>icons/ic_map_white_24dp.png</file>
-        <file>icons/ic_select_all_white_24dp.png</file>
-        <file>icons/ic_info_white_24dp.png</file>
-        <file>icons/ic_delete_white_24dp.png</file>
-        <file>icons/ic_photo_white_24dp.png</file>
-        <file>icons/ic_zoom_in_black_24dp.png</file>
-        <file>icons/ic_zoom_out_black_24dp.png</file>
-        <file>icons/ic_gps_fixed_black_24dp.png</file>
-        <file>icons/ic_settings_black_24dp.png</file>
-        <file>icons/ic_close_black_24dp.png</file>
-        <file>icons/ic_note_add_black_24dp.png</file>
-        <file>icons/ic_layers_black_24dp.png</file>
         <file>icons/ic_folder_open_black_48dp.png</file>
         <file>icons/ic_insert_drive_file_black_48dp.png</file>
     </qresource>
