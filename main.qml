@@ -24,9 +24,7 @@ SOFTWARE.
 
 import QtQuick 2.7
 import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Window 2.0
-import "utils.js" as Utils
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow  {
 	visible: true
@@ -35,5 +33,16 @@ ApplicationWindow  {
 	title: qsTr("File Dialog")
 	FilePicker {
 		anchors.fill: parent
+		showDotAndDotDot: true
+		nameFilters: "*.jpeg"
+		onFileSelected: {
+			messageDialog.text = "Cannot open file "+ currentFolder() + "/" +fileName
+			messageDialog.open()
+		}
+	}
+
+	MessageDialog {
+		id: messageDialog
+		standardButtons: StandardButton.Ok
 	}
 }

@@ -25,19 +25,29 @@ SOFTWARE.
 import QtQuick 2.0
 import QtQuick.Controls 1.4 as OldControls
 import QtQuick.Controls 2.1
-import QtQml.Models 2.2
 import Qt.labs.folderlistmodel 2.1
 import QtQuick.Window 2.0
 import "utils.js" as Utils
-import QtQuick.Dialogs 1.2
 
 Item {
+	id:picker
+	signal fileSelected(string fileName)
 	readonly property real textmargin: Utils.dp(Screen.pixelDensity, 8)
 	readonly property real textSize: Utils.dp(Screen.pixelDensity, 10)
 	readonly property real headerTextSize: Utils.dp(Screen.pixelDensity, 12)
 	readonly property real buttonHeight: Utils.dp(Screen.pixelDensity, 24)
 	readonly property real rowHeight: Utils.dp(Screen.pixelDensity, 36)
 	readonly property real toolbarHeight: Utils.dp(Screen.pixelDensity, 48)
+	property bool showDotAndDotDot: false
+	property bool showHidden: true
+	property bool showDirsFirst: true
+	property string folder: "file:///sdcard"
+	property string nameFilters: "*.*"
+
+	function currentFolder() {
+		return folderListModel.folder;
+	}
+
 	function isFolder(fileName) {
 		return folderListModel.isFolder(folderListModel.indexOf(folderListModel.folder + "/" + fileName));
 	}
@@ -50,8 +60,7 @@ Item {
 
 	function onItemClick(fileName) {
 		if(!isFolder(fileName)) {
-			messageDialog.text = "Cannot open file "+ fileName
-			messageDialog.open()
+			fileSelected(fileName)
 			return;
 		}
 		if(fileName === ".." && canMoveUp()) {
@@ -63,10 +72,6 @@ Item {
 				folderListModel.folder += "/" + fileName
 			}
 		}
-	}
-	MessageDialog {
-		id: messageDialog
-		standardButtons: StandardButton.Ok
 	}
 	Rectangle {
 		id: toolbar
@@ -110,11 +115,11 @@ Item {
 
 	FolderListModel {
 		id:  folderListModel
-//		showDotAndDotDot: true
-		showHidden: true
-		showDirsFirst: true
-		//		folder: "file:///sdcard"
-		nameFilters: "*.*"
+		showDotAndDotDot: picker.showDotAndDotDot
+		showHidden: picker.showHidden
+		showDirsFirst: picker.showDirsFirst
+		folder: picker.folder
+		nameFilters: picker.nameFilters
 	}
 	OldControls.TableView {
 		id: view
