@@ -32,7 +32,12 @@ import "utils.js" as Utils
 import QtQuick.Dialogs 1.2
 
 Item {
-	readonly property real textmargin: Utils.dp(Screen.pixelDensity,8)
+	readonly property real textmargin: Utils.dp(Screen.pixelDensity, 8)
+	readonly property real textSize: Utils.dp(Screen.pixelDensity, 10)
+	readonly property real headerTextSize: Utils.dp(Screen.pixelDensity, 12)
+	readonly property real buttonHeight: Utils.dp(Screen.pixelDensity, 24)
+	readonly property real rowHeight: Utils.dp(Screen.pixelDensity, 36)
+	readonly property real toolbarHeight: Utils.dp(Screen.pixelDensity, 48)
 	function isFolder(fileName) {
 		return folderListModel.isFolder(folderListModel.indexOf(folderListModel.folder + "/" + fileName));
 	}
@@ -68,13 +73,13 @@ Item {
 		anchors.right: parent.right
 		anchors.left: parent.left
 		anchors.top: parent.top
-		height: Utils.dp(Screen.pixelDensity, 48)
+		height: toolbarHeight
 		color: Utils.backgroundColor()
 		Button {
 			id: button
 			text: ".."
 			anchors.right: parent.right
-			anchors.rightMargin: Utils.dp(Screen.pixelDensity, 24)
+			anchors.rightMargin: buttonHeight
 			anchors.bottom: parent.bottom
 			anchors.top: parent.top
 			enabled: canMoveUp()
@@ -95,10 +100,10 @@ Item {
 			font.bold: true
 			verticalAlignment: Text.AlignVCenter
 			anchors.left: parent.left
-			anchors.leftMargin: Utils.dp(Screen.pixelDensity, 24)
+			anchors.leftMargin: buttonHeight
 			anchors.bottom: parent.bottom
 			anchors.top: parent.top
-			font.pixelSize: Utils.dp(Screen.pixelDensity, 10)
+			font.pixelSize: textSize
 
 		}
 	}
@@ -120,7 +125,7 @@ Item {
 		model: folderListModel
 		headerDelegate:headerDelegate
 		rowDelegate: Rectangle {
-			height: Utils.dp(Screen.pixelDensity, 40)
+			height: rowHeight
 		}
 
 		OldControls.TableViewColumn {
@@ -133,7 +138,7 @@ Item {
 		Component {
 			id: fileDelegate
 			Item {
-				height: Utils.dp(Screen.pixelDensity,36)
+				height: rowHeight
 				Rectangle {
 					anchors.fill: parent
 					MouseArea {
@@ -154,8 +159,8 @@ Item {
 					}
 					Image {
 						id: image
-						width: Utils.dp(Screen.pixelDensity,24)
-						height: width
+						height: buttonHeight
+						width: height
 						anchors.left: parent.left
 						anchors.leftMargin: textmargin
 						anchors.verticalCenter: parent.verticalCenter
@@ -167,13 +172,13 @@ Item {
 		Component {
 			id: headerDelegate
 			Rectangle {
-				height: Utils.dp(Screen.pixelDensity, 36)
+				height: rowHeight
 				color: Utils.textAltColor()
 				border.color: Utils.textAltColor()
 				Text {
 					anchors.verticalCenter: parent.verticalCenter
 					anchors.horizontalCenter: parent.horizontalCenter
-					height: Utils.dp(Screen.pixelDensity, 12)
+					height: headerTextSize
 					font.bold: true
 					elide: Text.ElideMiddle
 					color: Utils.primaryColor()
