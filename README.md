@@ -18,7 +18,14 @@ FilePicker {
         console.log("User selects file: " + currentFolder() + "/" +fileName)
     }
 }
+
 ```
+
+----------
+Interface Example:
+
+![Alt text](/screenshot.png?raw=true "Example")
+
 ----------
 > **Note**
 >It's a part of my android application project.
