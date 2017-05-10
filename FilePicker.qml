@@ -52,10 +52,7 @@ Item {
 		return folderListModel.isFolder(folderListModel.indexOf(folderListModel.folder + "/" + fileName));
 	}
 	function canMoveUp() {
-		if(folderListModel.folder.toString() === "file:///") {
-			return false;
-		}
-		return true;
+		return folderListModel.folder.toString() !== "file:///";
 	}
 
 	function onItemClick(fileName) {
