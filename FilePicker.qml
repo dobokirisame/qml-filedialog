@@ -94,7 +94,7 @@ Item {
 		}
 		Text {
 			id: filePath
-			text: folderListModel.folder.toString().replace("file:///", "►").replace("/", "►").replace("/", "►").replace("/", "►").replace("/", "►")
+			text: folderListModel.folder.toString().replace("file:///", "►").replace(new RegExp("/",'g'), "►")
 			renderType: Text.NativeRendering
 			elide: Text.ElideMiddle
 			anchors.right: button.left
